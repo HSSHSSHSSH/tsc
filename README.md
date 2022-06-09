@@ -1,0 +1,2 @@
+# tsc
+for ts exercise
