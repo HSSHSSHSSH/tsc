@@ -1,9 +1,9 @@
 type MyPick<T, K extends keyof T> = {
-  [P in K] : T[P]
-}
+  [P in K]: T[P];
+};
 
 /**
- * 
+ *
  */
 
 /**
@@ -16,6 +16,5 @@ type MyPick<T, K extends keyof T> = {
  * 知识点
  * 1.union类型
  * 2.keyof关键字
- * 3.extends的一种用法(约束类型)
+ * 3.extends的一种用法(约束范型)
  */
-
