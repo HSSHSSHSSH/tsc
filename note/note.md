@@ -57,3 +57,89 @@ myConstrains([]) //error
 myConstrains({}) //error
 ```
 
+## as const
+
+作用于值，将值变为不可修改，其类型为值的字面量类型
+
+```typescript
+//as const
+const arr = [1, 2, 3];
+arr.push(4);
+
+const tupleArr = [1, 2, 3] as const;
+// tupleArr.push(4);  // 不可修改
+// tupleArr[0] = 1.0; //不可修改
+
+type tupleArrType = typeof tupleArr;
+
+const tat: tupleArrType = [1, 2, 3];
+tat[0] = 1.0; //不可修改
+/**
+ * as const
+ * 将数组变成了readonly
+ * typeof此数组为一只读的元组类型,即字面量类型
+ */
+
+function genericsConstrains<T extends tupleArrType>(a: T) {
+  console.log(a);
+}
+
+genericsConstrains([1, 2, 3]);
+//obj
+const objAsConst = {
+  name: "hsh",
+  age: 25,
+} as const;
+
+const objAsConst1: typeof objAsConst = {
+  name: "hsh",
+  age: 25,
+};
+
+// objAsConst.name = '132'   //error
+// objAsConst1.name = '132'  //error
+
+//boolean
+
+const boolAsConst = false as const;
+
+const boolAsConst1: typeof boolAsConst = false;
+
+```
+
+## typeof
+
+作用于值，返回其类型，满足：
+
+1.基本类型 返回其字面量类型
+
+2.复合类型 返回复合类型, 满足：
+
+​    2.1   typeof   obj   返回与obj结构相同的interface  或 type
+
+```ty
+//  easy-tuple-to-object/marks
+
+//string类型  -> 字面量类型
+const str1 = "1";
+
+const str1_1: typeof str1 = "1";
+
+//number 类型 -> 字面量类型
+const num1 = 1;
+
+const num1_1: typeof num1 = 1;
+
+//boolean 类型  -> 字面量类型
+const boolean1 = false;
+
+const boolean1_1: typeof boolean1 = false;
+
+//array -> array
+
+const arr1 = [1, 2, 3];
+
+const arr1_1: typeof arr1 = [];
+
+```
+
