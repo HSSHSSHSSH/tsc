@@ -66,15 +66,15 @@ const arr1 = [1, 2, 3];
 const arr1_1: typeof arr1 = [];
 // arr1_1.concat
 
-//obj -> interface / type
-// const obj1 = {
-//   name: 'hsh',
-//   age: 25
-// }
-// const obj1_1: typeof obj1 = {
-//   name: 'hsh',
-//   age: 25
-// }
+// obj -> interface / type
+const obj1 = {
+  name: "hsh",
+  age: 25,
+};
+const obj1_1: typeof obj1 = {
+  name: "hsh",
+  age: 25,
+};
 
 interface objInterface {
   name: string;
@@ -86,14 +86,15 @@ type objType = {
   age: number;
 };
 
-const obj1: objInterface = {
+const obj2: objInterface = {
   name: "hsh",
   age: 10,
 };
 
-const obj2: objType = {
+const obj3: objType = {
   name: "hsh",
   age: 10,
 };
-
-type cases = [Expect<Equal<string, string>>];
+type cases1_3 = [Expect<Equal<typeof obj1, typeof obj2>>];
+type cases1_2 = [Expect<Equal<typeof obj1, typeof obj3>>];
+type cases2_3 = [Expect<Equal<typeof obj2, typeof obj3>>];

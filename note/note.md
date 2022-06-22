@@ -57,6 +57,15 @@ myConstrains([]) //error
 myConstrains({}) //error
 ```
 
+2.用于类型运算中的条件运算
+
+```typescript
+type res = 1 extends 2 ? true : false;
+//res = false
+```
+
+
+
 ## as const
 
 作用于值，将值变为不可修改，其类型为值的字面量类型
@@ -135,11 +144,43 @@ const boolean1 = false;
 
 const boolean1_1: typeof boolean1 = false;
 
-//array -> array
+//array类型 -> array
 
 const arr1 = [1, 2, 3];
 
 const arr1_1: typeof arr1 = [];
 
+// obj类型 -> interface / type
+const obj1 = {
+  name: "hsh",
+  age: 25,
+};
+const obj1_1: typeof obj1 = {
+  name: "hsh",
+  age: 25,
+};
+
+interface objInterface {
+  name: string;
+  age: number;
+}
+
+type objType = {
+  name: string;
+  age: number;
+};
+
+const obj2: objInterface = {
+  name: "hsh",
+  age: 10,
+};
+
+const obj3: objType = {
+  name: "hsh",
+  age: 10,
+};
+type cases1_3 = [Expect<Equal<typeof obj1, typeof obj2>>];
+type cases1_2 = [Expect<Equal<typeof obj1, typeof obj3>>];
+type cases2_3 = [Expect<Equal<typeof obj2, typeof obj3>>];
 ```
 
