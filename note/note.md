@@ -64,6 +64,17 @@ type res = 1 extends 2 ? true : false;
 //res = false
 ```
 
+## infer
+
+类型推导 仅在类型的条件判断 extends下才可使用
+
+```typescript
+type First<T extends any[]> = T extends [infer First, ...infer Rest]
+  ? First
+  : never;
+//first of array
+```
+
 
 
 ## as const
